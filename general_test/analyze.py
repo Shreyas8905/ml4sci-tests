@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import fits
+from astropy.io import fits
 
 def analyze(embedding, cluster_labels, image_paths):
     plt.figure(figsize=(12, 8))

@@ -1,10 +1,10 @@
+import torch
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from astropy.io import fits
 from sklearn.preprocessing import minmax_scale
 import numpy as np
 import matplotlib.pyplot as plt
-import fits
 
 class ALMADataset(Dataset):
     def __init__(self, file_paths, transforms=None):
@@ -24,12 +24,12 @@ class ALMADataset(Dataset):
             data = (data - np.min(data)) / (np.ptp(data) + 1e-8)
             data = data.astype(np.float32)
             data = np.expand_dims(data, axis=0)
+        data = torch.tensor(data)
         if self.transforms:
             data = self.transforms(data)
-        return data 
+        return data, path
 
 transform = transforms.Compose([
-    transforms.RandomRotation(180, fill=0), 
     transforms.CenterCrop(512), 
-    transforms.Resize((600, 600)), 
-])    
+    transforms.RandomRotation(180, fill=0) 
+])   

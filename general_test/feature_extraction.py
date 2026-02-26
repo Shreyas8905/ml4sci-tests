@@ -3,11 +3,13 @@ import glob
 import numpy as np
 from torch.utils.data import DataLoader
 from data_preprocessing import ALMADataset, transform
+from model import AutoEncoder
 
 def feature_extraction():
     print("Extracting structural fingerprints...")
-    
-    model = 'autoencoder.pth'
+    device = torch.device("cpu")
+    model = AutoEncoder(latent_dim=512).to(device)
+    model.load_state_dict(torch.load('autoencoder.pth'))
     device = torch.device("cpu")
     data_dir = "./data/*.fits"
     file_paths = glob.glob(data_dir)
