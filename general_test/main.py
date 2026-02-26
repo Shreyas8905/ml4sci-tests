@@ -4,6 +4,7 @@ from analyze import analyze
 from clustering import cluster
 
 def main():
+    train_autoencoder()
     latent_features, image_paths = feature_extraction()
     embedding, cluster_labels = cluster(latent_features)
     analyze(embedding, cluster_labels, image_paths)

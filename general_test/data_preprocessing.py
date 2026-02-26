@@ -21,7 +21,8 @@ class ALMADataset(Dataset):
             if data.ndim > 2:
                 data = data.flatten()[:360000].reshape(600, 600)
             data = np.nan_to_num(data)
-            data = (data - np.min(data)) / (np.ptp(data) + 1e-8)
+            data = np.log1p(data)
+            data = data / (np.max(data) + 1e-8)
             data = data.astype(np.float32)
             data = np.expand_dims(data, axis=0)
         data = torch.tensor(data)
