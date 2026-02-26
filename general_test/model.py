@@ -1,18 +1,4 @@
-import torch
 import torch.nn as nn
-import torch.optim as optim
-from torch.utils.data import Dataset, DataLoader
-from torchvision import transforms
-from astropy.io import fits
-from sklearn.preprocessing import minmax_scale
-import umap
-import hdbscan
-import numpy as np
-import matplotlib.pyplot as plt
-import glob
-import os
-import fits
-
 class AutoEncoder(nn.Module):
     def __init__(self, latent_dim=512):
         super(AutoEncoder, self).__init__()
