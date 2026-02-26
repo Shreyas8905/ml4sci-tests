@@ -1,16 +1,9 @@
-import torch
-import torch.nn as nn
-import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from astropy.io import fits
 from sklearn.preprocessing import minmax_scale
-import umap
-import hdbscan
 import numpy as np
 import matplotlib.pyplot as plt
-import glob
-import os
 import fits
 
 class ALMADataset(Dataset):
@@ -36,7 +29,7 @@ class ALMADataset(Dataset):
         return data 
 
 transform = transforms.Compose([
-    transforms.RandomRotation(180), 
-    transforms.CenterCrop(600), 
+    transforms.RandomRotation(180, fill=0), 
+    transforms.CenterCrop(512), 
     transforms.Resize((600, 600)), 
 ])    
