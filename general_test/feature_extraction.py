@@ -25,4 +25,4 @@ def feature_extraction():
             image_paths.extend(paths)
     latent_features = np.array(latent_features)
 
-    return latent_features
+    return latent_features, image_paths
