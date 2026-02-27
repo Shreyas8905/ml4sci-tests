@@ -21,6 +21,7 @@ class ALMADataset(Dataset):
             if data.ndim > 2:
                 data = data.flatten()[:360000].reshape(600, 600)
             data = np.nan_to_num(data)
+            data = data - np.min(data)
             data = np.log1p(data)
             data = data / (np.max(data) + 1e-8)
             data = data.astype(np.float32)

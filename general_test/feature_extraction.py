@@ -11,7 +11,7 @@ def feature_extraction():
     model = AutoEncoder(latent_dim=512).to(device)
     model.load_state_dict(torch.load('autoencoder.pth'))
     device = torch.device("cpu")
-    data_dir = "./data/*.fits"
+    data_dir = "../data/*.fits"
     file_paths = glob.glob(data_dir)
     dataset = ALMADataset(file_paths, transforms=transform)
     dataloader = DataLoader(dataset, batch_size=16, shuffle=True)
