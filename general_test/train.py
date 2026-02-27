@@ -10,7 +10,7 @@ def train_autoencoder():
     device = torch.device("cpu")
     model = AutoEncoder().to(device)
 
-    data_dir = "./data/*.fits"
+    data_dir = "../data/*.fits"
     file_paths = glob.glob(data_dir)
 
     dataset = ALMADataset(file_paths, transforms=transform)

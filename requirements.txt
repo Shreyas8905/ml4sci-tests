@@ -7,4 +7,4 @@ torchvision
 umap-learn
 hdbscan
 ipykernel
-fits
+pytorch-msssim
