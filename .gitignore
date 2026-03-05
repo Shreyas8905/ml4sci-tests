@@ -2,3 +2,4 @@
 data/
 autoencoder.pth
 __pycache__/
+ResNetAutoencoder256.pth

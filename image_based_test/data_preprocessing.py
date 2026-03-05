@@ -7,9 +7,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class ALMADataset(Dataset):
-    def __init__(self, file_paths, transforms=None):
+    def __init__(self, file_paths, transform=None):
         self.file_paths = file_paths
-        self.transforms = transforms
+        self.transform = transform
 
     def __len__(self):
         return len(self.file_paths)
@@ -27,11 +27,15 @@ class ALMADataset(Dataset):
             data = data.astype(np.float32)
             data = np.expand_dims(data, axis=0)
         data = torch.tensor(data)
-        if self.transforms:
-            data = self.transforms(data)
+        if self.transform:
+            data = self.transform(data)
         return data, path
 
-transform = transforms.Compose([
-    transforms.CenterCrop(512), 
+train_transform = transforms.Compose([
+    transforms.CenterCrop(256), 
     transforms.RandomRotation(180, fill=0) 
-])   
+])
+
+test_transform = transforms.Compose([
+    transforms.CenterCrop(256)
+])
